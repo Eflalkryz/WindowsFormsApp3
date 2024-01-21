@@ -13,6 +13,8 @@ namespace WindowsFormsApp3
     public partial class Form1 : Form
     {
         Context c = new Context();
+        private bool listelePressed;
+        
         public Form1()
         {
             InitializeComponent();
@@ -187,6 +189,10 @@ namespace WindowsFormsApp3
             c.Students.Add(student);
             c.SaveChanges();
             MessageBox.Show("Student is added.");
+            if (listelePressed)
+            {
+                dataGridView1.DataSource = c.Students.ToList();
+            }
             txtName.Text = string.Empty;
             txtEmail.Text = string.Empty;
             txtSurname.Text = String.Empty;
@@ -209,6 +215,10 @@ namespace WindowsFormsApp3
             c.Students.Remove(student);
             c.SaveChanges();
             MessageBox.Show("Student is deleted.");
+            if (listelePressed)
+            {
+                dataGridView1.DataSource = c.Students.ToList();
+            }
             txtId.Text = string.Empty;
         }
     }
